@@ -6,7 +6,7 @@ from src.category import Category
 from src.product import Product
 
 
-def read_json(path: str) -> dict[Any, Any]:
+def read_json(path: str) -> Any:
     """Читает JSON файл и возвращает PY-объект"""
 
     full_path = os.path.abspath(path)
@@ -22,7 +22,6 @@ def create_category_from_json(data: dict) -> list:
     for category in data:
         category_objects = Category(category["name"], category["description"], category["products"])
         category_from_file.append(category_objects)
-
     return category_from_file
 
 
@@ -34,16 +33,4 @@ def create_product_from_json(data: dict) -> list:
         for product in category["products"]:
             product_objects = Product(product["name"], product["description"], product["price"], product["quantity"])
             products_from_file.append(product_objects)
-
     return products_from_file
-
-
-if __name__ == "__main__":
-    file_json = read_json("../data/products.json")
-    list_category = create_category_from_json(file_json)
-    for i in list_category:
-        print(i.name)
-
-    list_product = create_product_from_json(file_json)
-    for i in list_product:
-        print(i.name)
