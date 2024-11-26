@@ -15,18 +15,18 @@ class Category:
         Category.product_count += len(self.__products) if products else 0
 
     def add_product(self, new_product):
-        '''Даёт воозможность добавлять новый продукт в список продуктов категории'''
+        """Даёт воозможность добавлять новый продукт в список продуктов категории"""
 
         self.__products.append(new_product)
         Category.product_count += 1
 
     @property
     def products(self):
-        '''Выводит список товаров в виде строк в формате: Название продукта, 80 руб. Остаток: 15 шт.'''
+        """Выводит список товаров в виде строк в формате: Название продукта, 80 руб. Остаток: 15 шт."""
 
         product_list = []
 
         for i in self.__products:
-            str_product = f'{i.name}, {i.price} руб. Остаток: {i.quantity} шт.'
+            str_product = f"{i.name}, {i.price} руб. Остаток: {i.quantity} шт."
             product_list.append(str_product)
         return product_list
