@@ -27,3 +27,9 @@ def test_add_product(new_product_category):
         "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт.",
         '55" QLED 4K, 123000.0 руб. Остаток: 7 шт.',
     ]
+
+
+def test_str_category(get_category_1, get_category_2, new_product_category):
+    assert str(get_category_1) == "Смартфоны, количество продуктов: 22 шт."
+    assert str(get_category_2) == "Телевизоры, количество продуктов: 7 шт."
+    assert str(new_product_category) == "Смартфоны, количество продуктов: 34 шт."

@@ -30,3 +30,10 @@ class Category:
             str_product = f"{i.name}, {i.price} руб. Остаток: {i.quantity} шт."
             product_list.append(str_product)
         return product_list
+
+    def __str__(self):
+        count_product_in_category = 0
+        for i in self.__products:
+            count_product = i.quantity
+            count_product_in_category += count_product
+        return f"{self.name}, количество продуктов: {count_product_in_category} шт."
