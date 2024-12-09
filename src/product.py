@@ -8,6 +8,7 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
+        self.add_price = price * quantity
 
     @classmethod
     def new_product(cls, new_product):
@@ -35,3 +36,13 @@ class Product:
             print("Цена не должна быть нулевая или отрицательная")
         else:
             self.__price = new_price
+
+    def __str__(self):
+        """Реализация функции print"""
+
+        return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other):
+        """Реализация функции сложения"""
+
+        return self.add_price + other.add_price
