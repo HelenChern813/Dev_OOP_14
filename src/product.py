@@ -1,4 +1,15 @@
-class Product:
+from src.product_base import BaseProduct
+
+
+class MixinProduct:
+    def __init__(self):
+        print(repr(self))
+
+    def __repr__(self):
+        return f'{self.__class__.__name__}("{self.name}", "{self.description}", {self.price}, {self.quantity})'
+
+
+class Product(BaseProduct, MixinProduct):
     """Класс для нейминга продуктов магазина и инфю об их количестве"""
 
     def __init__(self, name, description, price, quantity):
@@ -9,6 +20,7 @@ class Product:
         self.__price = price
         self.quantity = quantity
         self.add_price = price * quantity
+        super().__init__()
 
     @classmethod
     def new_product(cls, new_product):
@@ -49,23 +61,3 @@ class Product:
             return self.add_price + other.add_price
         else:
             raise TypeError
-
-
-class Smartphone(Product):
-
-    def __init__(self, name, description, price, quantity, efficiency, model, memory, color):
-
-        super().__init__(name, description, price, quantity)
-        self.efficiency = efficiency
-        self.model = model
-        self.memory = memory
-        self.color = color
-
-
-class LawnGrass(Product):
-    def __init__(self, name, description, price, quantity, country, germination_period, color):
-
-        super().__init__(name, description, price, quantity)
-        self.country = country
-        self.germination_period = germination_period
-        self.color = color
