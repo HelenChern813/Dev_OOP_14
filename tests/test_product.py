@@ -1,3 +1,6 @@
+import pytest
+
+
 def test_get_product_init(product):
     assert product.name == "Samsung Galaxy S23 Ultra"
     assert product.description == "256GB, Серый цвет, 200MP камера"
@@ -34,3 +37,35 @@ def test_add_product(product, product_2, product_3, new_product):
     assert product_2 + product_3 == 2114000.0
     assert product_2 + new_product == 2580000.0
     assert product_3 + new_product == 1334000.0
+
+
+def test_smart_cls(smart_product_1):
+    assert smart_product_1.name == "Samsung Galaxy S23 Ultra"
+    assert smart_product_1.description == "256GB, Серый цвет, 200MP камера"
+    assert smart_product_1.price == 180000.0
+    assert smart_product_1.quantity == 5
+    assert smart_product_1.efficiency == 95.5
+    assert smart_product_1.model == "S23 Ultra"
+    assert smart_product_1.memory == 256
+    assert smart_product_1.color == "Серый"
+
+
+def test_grass_cls(grass_product_1):
+    assert grass_product_1.name == "Газонная трава"
+    assert grass_product_1.description == "Элитная трава для газона"
+    assert grass_product_1.price == 500.0
+    assert grass_product_1.quantity == 20
+    assert grass_product_1.country == "Россия"
+    assert grass_product_1.germination_period == "7 дней"
+    assert grass_product_1.color == "Зеленый"
+
+
+def test_sum_smrt_grass(smart_product_1, smart_product_2, grass_product_1, grass_product_2):
+    assert smart_product_1 + smart_product_2 == 1334000.0
+    assert grass_product_1 + grass_product_2 == 16750.0
+
+
+def test_product_add(smart_product_1, grass_product_1):
+    with pytest.raises(TypeError):
+        sum_product = smart_product_1 + grass_product_1
+        return sum_product
