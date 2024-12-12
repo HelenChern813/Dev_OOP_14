@@ -1,4 +1,5 @@
 import pytest
+from src.product import Product
 
 
 def test_get_product_init(product):
@@ -69,3 +70,9 @@ def test_product_add(smart_product_1, grass_product_1):
     with pytest.raises(TypeError):
         sum_product = smart_product_1 + grass_product_1
         return sum_product
+
+
+def test_mixin_product(capsys):
+    Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    message = capsys.readouterr()
+    assert message

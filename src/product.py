@@ -1,4 +1,27 @@
-class Product:
+from abc import ABC, abstractmethod
+
+
+class BaseProduct(ABC):
+    '''Базовый класс для продуктов'''
+
+    @abstractmethod
+    def __add__(self, other):
+        pass
+
+    @abstractmethod
+    def __str__(self):
+        pass
+
+
+class MixinProduct:
+    def __init__(self):
+        print(repr(self))
+
+    def __repr__(self):
+        return f'{self.__class__.__name__}("{self.name}", "{self.description}", {self.price}, {self.quantity})'
+
+
+class Product(BaseProduct, MixinProduct):
     """Класс для нейминга продуктов магазина и инфю об их количестве"""
 
     def __init__(self, name, description, price, quantity):
@@ -9,6 +32,7 @@ class Product:
         self.__price = price
         self.quantity = quantity
         self.add_price = price * quantity
+        super().__init__()
 
     @classmethod
     def new_product(cls, new_product):
@@ -52,6 +76,7 @@ class Product:
 
 
 class Smartphone(Product):
+    '''Класс Смартфоны'''
 
     def __init__(self, name, description, price, quantity, efficiency, model, memory, color):
 
@@ -63,6 +88,7 @@ class Smartphone(Product):
 
 
 class LawnGrass(Product):
+    '''Класс Газонная трава'''
     def __init__(self, name, description, price, quantity, country, germination_period, color):
 
         super().__init__(name, description, price, quantity)
