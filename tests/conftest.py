@@ -100,3 +100,8 @@ def category_smart():
     )
     smartphone2 = Smartphone("Iphone 15", "512GB, Gray space", 210000.0, 8, 98.2, "15", 512, "Gray space")
     return Category("Смартфоны", "Высокотехнологичные смартфоны", [smartphone1, smartphone2])
+
+
+@pytest.fixture()
+def get_category_not_product():
+    return Category("Пустая категория", "Категория без продуктов", [])

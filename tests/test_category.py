@@ -14,6 +14,8 @@ def test_category_init(get_category_1, get_category_2):
     assert get_category_2.category_count == 2
     assert get_category_1.product_count == 3
     assert get_category_2.product_count == 3
+    assert get_category_1.middle_price() == 120500.0
+    assert get_category_2.middle_price() == 123000.0
 
 
 def test_add_product(new_product_category):
@@ -41,3 +43,7 @@ def test_str_category(get_category_1, get_category_2, new_product_category):
 def test_not_product_add(category_smart):
     with pytest.raises(TypeError):
         category_smart.add_product("Not a product")
+
+
+def test_get_category_not_product(get_category_not_product):
+    assert get_category_not_product.middle_price() == 0
