@@ -19,13 +19,13 @@ def test_category_init(get_category_1, get_category_2):
 
 
 def test_add_product(new_product_category):
+    assert new_product_category.category_count == 3
+    assert new_product_category.product_count == 7
     assert new_product_category.name == "Смартфоны"
     assert (
         new_product_category.description
         == "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни"
     )
-    assert new_product_category.category_count == 1
-    assert new_product_category.product_count == 4
     assert new_product_category.products == [
         "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт.",
         "Iphone 15, 210000.0 руб. Остаток: 8 шт.",
