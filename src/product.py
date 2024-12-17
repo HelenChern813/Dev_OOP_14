@@ -15,12 +15,15 @@ class Product(BaseProduct, MixinProduct):
     def __init__(self, name, description, price, quantity):
         """Инициализация класса для объектов"""
 
-        self.name = name
-        self.description = description
-        self.__price = price
-        self.quantity = quantity
-        self.add_price = price * quantity
-        super().__init__()
+        if quantity <= 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
+        else:
+            self.name = name
+            self.description = description
+            self.__price = price
+            self.quantity = quantity
+            self.add_price = price * quantity
+            super().__init__()
 
     @classmethod
     def new_product(cls, new_product):

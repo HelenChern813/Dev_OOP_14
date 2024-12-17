@@ -9,7 +9,7 @@ def test_get_product_init(product):
     assert product.quantity == 5
 
 
-def test_creat_new_product(new_product):
+def test_create_new_product(new_product):
     assert new_product.name == "Samsung Galaxy S23 Ultra"
     assert new_product.description == "256GB, Серый цвет, 200MP камера"
     assert new_product.price == 180000.0
@@ -76,3 +76,8 @@ def test_mixin_product(capsys):
     Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
     message = capsys.readouterr()
     assert message
+
+
+def test_product_not_quantity():
+    with pytest.raises(ValueError):
+        Product("Бракованный товар", "Неверное количество", 1000.0, 0)
